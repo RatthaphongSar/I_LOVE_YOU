@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Happy Valentine's Day Nice</title>
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Intro loading screen -->
+    <div id="introScreen" class="intro" aria-live="polite">
+      <div class="intro__content">
+        <div class="intro__heart"></div>
+        <p>Preparing something special for Nice...</p>
+      </div>
+    </div>
+
+    <!-- Ambient background layers -->
+    <div id="floatingLayer" aria-hidden="true"></div>
+    <div id="sparkles" aria-hidden="true"></div>
+
+    <!-- Effects canvas -->
+    <canvas id="fxCanvas" aria-hidden="true"></canvas>
+
+    <!-- Background music -->
+    <audio id="bgMusic" loop preload="none">
+      <!-- Replace with your real music -->
+      <source src="assets/music/piano.mp3" type="audio/mpeg" />
+    </audio>
+
+    <main>
+      <!-- Hero section -->
+      <section id="hero" class="section section--full hero">
+        <div class="hero__content glass" data-parallax="0.2">
+          <p class="hero__badge">For Nice 💖</p>
+          <h1>Happy Valentine's Day Nice ❤️</h1>
+          <p class="hero__subtitle">
+            <span id="heroTyping"></span>
+          </p>
+          <div class="hero__actions">
+            <button id="openHeart" class="btn btn--primary glow">
+              Open My Heart
+            </button>
+            <button id="musicToggle" class="btn btn--ghost" aria-pressed="false">
+              Play music
+            </button>
+          </div>
+        </div>
+        <div class="hero__visual glass" data-parallax="0.35">
+          <div class="hero__orb"></div>
+          <div class="hero__card">
+            <span>💌</span>
+            <p>Tap to unlock the surprise</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Surprise section -->
+      <section id="surprise" class="section section--full surprise is-hidden">
+        <div class="surprise__content glass">
+          <h2>My sweetest surprise for you</h2>
+          <p class="surprise__intro">
+            Every heartbeat whispers your name, Nice. This page is a hug, a kiss,
+            and a promise wrapped in golden light.
+          </p>
+          <div class="surprise__highlights">
+            <div class="highlight">✨ Hearts exploding</div>
+            <div class="highlight">🎉 Confetti magic</div>
+            <div class="highlight">🎶 Soft piano glow</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Love letter section -->
+      <section id="letter" class="section section--full letter">
+        <div class="letter__content glass reveal">
+          <h2>Love Letter</h2>
+          <p>
+            Dear Nice, every moment with you feels like a cinematic dream. Your
+            smile is my sunrise, your laugh my favorite melody, and your heart
+            the safest place I know.
+          </p>
+          <button id="openLetter" class="btn btn--secondary">Open the letter</button>
+          <div class="envelope" id="envelope">
+            <div class="envelope__flap"></div>
+            <div class="envelope__card">
+              <p>
+                I love you more than all the stars in our sky. Thank you for
+                choosing me, today and forever.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Memory timeline -->
+      <section id="timeline" class="section section--full timeline">
+        <div class="timeline__content glass">
+          <h2>Our Love Story</h2>
+          <div class="timeline__list">
+            <div class="timeline__item reveal">
+              <span>💫</span>
+              <div>
+                <h3>First Spark</h3>
+                <p>The moment I knew my heart was yours.</p>
+              </div>
+            </div>
+            <div class="timeline__item reveal">
+              <span>🌹</span>
+              <div>
+                <h3>Sweet Adventures</h3>
+                <p>Every date became a chapter of our movie.</p>
+              </div>
+            </div>
+            <div class="timeline__item reveal">
+              <span>💍</span>
+              <div>
+                <h3>Forever Dreams</h3>
+                <p>Building a future made of love and laughter.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Photo gallery -->
+      <section id="gallery" class="section section--full gallery">
+        <div class="gallery__content glass">
+          <h2>Our Memories</h2>
+          <!-- Replace with your real couple photos -->
+          <div class="gallery__grid">
+            <button class="polaroid" data-photo="assets/photos/photo1.jpg">
+              <img
+                src="assets/photos/photo1.jpg"
+                alt="Memory 1"
+                loading="lazy"
+                decoding="async"
+                width="320"
+                height="420"
+              />
+              <span>Our Smile</span>
+            </button>
+            <button class="polaroid" data-photo="assets/photos/photo2.jpg">
+              <img
+                src="assets/photos/photo2.jpg"
+                alt="Memory 2"
+                loading="lazy"
+                decoding="async"
+                width="320"
+                height="420"
+              />
+              <span>Our Moment</span>
+            </button>
+            <button class="polaroid" data-photo="assets/photos/photo3.jpg">
+              <img
+                src="assets/photos/photo3.jpg"
+                alt="Memory 3"
+                loading="lazy"
+                decoding="async"
+                width="320"
+                height="420"
+              />
+              <span>Our Kiss</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Love messages slider -->
+      <section id="messages" class="section section--full messages">
+        <div class="messages__content glass">
+          <h2>Love Messages</h2>
+          <div class="slider">
+            <div class="slider__track" id="sliderTrack">
+              <div class="slide">You are my favorite hello and hardest goodbye.</div>
+              <div class="slide">Every day with you feels like a fairytale.</div>
+              <div class="slide">Your smile is the light that guides me home.</div>
+              <div class="slide">I choose you in every lifetime, Nice.</div>
+            </div>
+          </div>
+          <div class="slider__controls">
+            <button id="prevSlide" class="btn btn--ghost">Prev</button>
+            <button id="nextSlide" class="btn btn--ghost">Next</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Countdown -->
+      <section id="countdown" class="section section--full countdown">
+        <div class="countdown__content glass">
+          <h2>Countdown to Our Next Valentine</h2>
+          <div id="countdownTime" class="countdown__time" aria-live="polite">
+            Loading...
+          </div>
+        </div>
+      </section>
+
+      <!-- Promise section -->
+      <section id="promise" class="section section--full promise">
+        <div class="promise__content glass">
+          <h2>Nice, will you stay with me forever?</h2>
+          <p>
+            I want every sunrise, every adventure, every quiet moment — all with
+            you.
+          </p>
+          <button id="promiseYes" class="btn btn--primary glow">YES</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Made with ❤️ by your love</p>
+    </footer>
+
+    <!-- Photo modal -->
+    <div id="photoModal" class="modal" aria-hidden="true">
+      <button id="closeModal" class="modal__close" aria-label="Close photo">
+        ✕
+      </button>
+      <img id="modalImage" alt="Memory zoomed" />
+    </div>
+
+    <div id="bouquetModal" class="bouquet" aria-hidden="true">
+      <div class="bouquet__veil"></div>
+      <div class="bouquet__ring"></div>
+      <div class="bouquet__card">
+        <div class="bouquet__crown">👑</div>
+        <div class="bouquet__flowers">
+          <span class="flower flower--1"></span>
+          <span class="flower flower--2"></span>
+          <span class="flower flower--3"></span>
+          <span class="flower flower--4"></span>
+          <span class="flower flower--5"></span>
+          <span class="flower flower--6"></span>
+          <span class="flower flower--7"></span>
+          <span class="flower flower--8"></span>
+          <span class="flower flower--9"></span>
+        </div>
+        <div class="bouquet__hearts">
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span>
+        </div>
+        <h2>I LOVE U MY BABY</h2>
+        <p>Forever and always, Nice 💗</p>
+        <button id="closeBouquet" class="btn btn--ghost">Close</button>
+      </div>
+    </div>
+
+    <!-- Main script -->
+    <script src="script.js"></script>
+  </body>
+</html>
