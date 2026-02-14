@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy to GitHub Pages (gh-pages branch)
 
 on:
   push:
@@ -7,8 +7,6 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 concurrency:
   group: "pages"
@@ -17,36 +15,13 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      # Checkout repository content
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Prepare GitHub Pages
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      # Upload the static site
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: .
-
-      # Deploy to GitHub Pages
-      - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v4
-
-      # Publish to gh-pages branch
-      - name: Publish gh-pages branch
-        if: github.ref == 'refs/heads/main'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout --orphan gh-pages
-          git add -A
-          git commit -m "Deploy to gh-pages"
-          git push --force origin gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+          publish_branch: gh-pages
