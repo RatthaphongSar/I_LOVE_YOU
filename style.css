@@ -22,7 +22,7 @@ html {
 
 body {
   margin: 0;
-  font-family: "Segoe UI", "Poppins", system-ui, -apple-system, sans-serif;
+  font-family: "Kanit", "Segoe UI", "Poppins", system-ui, -apple-system, sans-serif;
   color: var(--ink);
   background: radial-gradient(circle at top, #fff0f6 0%, #ffe3ee 40%, #ffd2e0 100%);
   min-height: 100vh;
@@ -262,6 +262,19 @@ button {
   box-shadow: 0 24px 60px rgba(255, 105, 150, 0.25);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass::after {
+  content: "";
+  position: absolute;
+  inset: -60% -30%;
+  background: linear-gradient(120deg, transparent 35%, rgba(255, 255, 255, 0.5) 50%, transparent 65%);
+  opacity: 0.5;
+  transform: translateX(-40%);
+  animation: shimmer 6s ease-in-out infinite;
+  pointer-events: none;
 }
 
 /* Buttons */
@@ -299,6 +312,7 @@ button {
 
 .glow {
   box-shadow: 0 0 18px rgba(255, 95, 145, 0.6);
+  animation: glowBreath 2.6s ease-in-out infinite;
 }
 
 /* Hero */
@@ -371,6 +385,30 @@ button {
   }
   50% {
     transform: scale(1.08);
+  }
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    transform: translateX(-40%);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateX(40%);
+    opacity: 0.6;
+  }
+}
+
+@keyframes glowBreath {
+  0%,
+  100% {
+    box-shadow: 0 0 18px rgba(255, 95, 145, 0.6);
+    transform: translateY(0);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 95, 145, 0.9);
+    transform: translateY(-2px);
   }
 }
 
