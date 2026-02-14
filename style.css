@@ -733,6 +733,24 @@ button {
   font-weight: 600;
 }
 
+.bouquet__note {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #b42a62;
+  text-shadow: 0 6px 18px rgba(255, 122, 162, 0.35);
+  animation: noteGlow 3.5s ease-in-out infinite;
+}
+
+@keyframes noteGlow {
+  0%,
+  100% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 .bouquet__hearts {
   position: absolute;
   inset: -20px;
